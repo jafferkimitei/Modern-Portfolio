@@ -20,15 +20,15 @@ function Skill({ skill, directionLeft }: Props) {
         whileInView={{ opacity: 1, x: 0 }}
         src={urlFor(skill?.image).url()}
         alt="Skill Icon"
-        className='rounded-full border border-gray-500 object-cover w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 xl:w-28 xl:h-28 filter group-hover:grayscale transition duration-300 ease-in-out transform group-hover:scale-110' // Added scale on hover
+        className='rounded-full border border-gray-500 object-cover w-24 h-24 md:w-28 md:h-28 xl:w-32 xl:h-32 filter group-hover:grayscale transition duration-300 ease-in-out'
       />
 
       <motion.div 
-        className='absolute opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out group-hover:bg-white w-full h-full rounded-full flex items-center justify-center'
+        className='absolute opacity-0 group-hover:opacity-80 transition duration-300 ease-in-out group-hover:bg-white h-24 w-24 md:w-28 md:h-28 xl:w-32 xl:h-32 rounded-full flex items-center justify-center z-0'
         initial={{ opacity: 0 }}
         whileHover={{ opacity: 1 }}
       >
-        <p className='text-lg sm:text-xl md:text-2xl font-bold text-black opacity-100'>
+        <p className='text-3xl font-bold text-black opacity-100'>
           {skill.progress}%
         </p>
       </motion.div>

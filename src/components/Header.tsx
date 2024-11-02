@@ -39,7 +39,7 @@ export default function Header({ socials }: Props) {
         ))}
       </motion.div>
 
-      <Link href="#contactme" passHref>
+      <Link legacyBehavior href="#contactme">
         <motion.div 
           initial={{
             x: 500,

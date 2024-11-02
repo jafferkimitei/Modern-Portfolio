@@ -33,7 +33,7 @@ const Home = async () => {
   }
 
   return (
-    <div className="bg-[rgb(36,36,36)] text-white h-screen snap-y snap-mandatory overflow-y-scroll overflow-x-hidden z-0 scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-[#F7AB0A]/80">
+    <div className="bg-[rgb(36,36,36)] text-white h-screen snap-y snap-mandatory overflow-y-scroll overflow-x-hidden z-0 scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-[#F7AB0A]/80 md:scale-100 scale-67">
       {socials && <Header socials={socials} />}
 
       <section id="hero" className="snap-start">
@@ -44,11 +44,11 @@ const Home = async () => {
         {pageInfo && <About pageInfo={pageInfo} />}
       </section>
 
-      <section id="experience" className="snap-center">
+      <section id="experience" className="snap-center h-[150vh]">
         {experiences && <WorkExperience experiences={experiences} />}
       </section>
 
-      <section id="skills" className="snap-start">
+      <section id="skills" className="snap-start h-[150vh]">
         {skills && <Skills skills={skills} />}
       </section>
 
@@ -56,23 +56,24 @@ const Home = async () => {
         {projects && <Projects projects={projects} />}
       </section>
 
-      <section id="contactme" className="snap-start">
+      <section id="contactme" className="snap-start h-[125vh]">
         <ContactMe />
       </section>
 
       <Link href="#hero" passHref>
-        <footer className="sticky bottom-5 w-full cursor-pointer">
-          <div className="flex items-center justify-center">
-            <Image
-              className="h-10 w-10 rounded-full filter grayscale object-cover hover:grayscale-0 cursor-pointer"
-              src={"/images/artflow1.png"}
-              alt="Back to top"
-              width={40}
-              height={40}
-            />
-          </div>
-        </footer>
-      </Link>
+  <footer className="sticky bottom-5 w-full cursor-pointer">
+    <div className="flex items-center justify-center">
+      <Image
+        className="h-10 w-10 rounded-full filter grayscale object-cover hover:grayscale-0 transition-all"
+        src="/images/artflow1.png"
+        alt="Back to top"
+        width={40}
+        height={40}
+      />
+    </div>
+  </footer>
+</Link>
+
     </div>
   );
 };

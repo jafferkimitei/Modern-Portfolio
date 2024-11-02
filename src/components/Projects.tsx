@@ -1,63 +1,79 @@
 "use client";
 
-import React from 'react'
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Project } from '../../typings';
 import { urlFor } from '../../sanity';
 import Image from "next/image";
+import Link from 'next/link';
 
 type Props = {
     projects: Project[];
 }
 
-function Projects({ projects}: Props) {
+function Projects({ projects }: Props) {
   return (
     <motion.div 
-    initial={{ opacity: 0 }}
-    whileInView={{ opacity: 1 }}
-    transition={{ duration: 1.5 }}
-    className='h-screen relative flex overflow-hidden flex-col text-left md:flex-row max-w-full justify-evenly mx-auto items-center z-0'>
-
-    <h3 className='absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl md:text-3xl'>
-        Projects
-    </h3>
-
-    <div className='relative w-full flex overflow-x-scroll overflow-y-hidden snap-x snap-mandatory z-20 scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-[#F7AB0A]/80'>
-  {projects.map((project, i) => (
-    <div key={i} className='w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-20 md:p-44 h-screen'>
-      <motion.div 
-  initial={{ y: -300, opacity: 0 }}
-  transition={{ duration: 1.2 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true }}
-  className='relative w-full max-w-[300px] max-h-[200px] flex justify-center'
->
-  <Image 
-    src={urlFor(project?.image).url()} 
-    alt={`Project Image ${i + 1}`} 
-    style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
-    width={300}
-    height={200}
-  />
-</motion.div>
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 1.5 }}
+      className='h-[125vh] relative flex overflow-hidden flex-col text-left md:flex-row max-w-full justify-evenly mx-auto items-center z-0'
+    >
+      <h3 className='absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl md:text-3xl lg:text-4xl'>
+  Projects
+</h3>
 
 
-      <div className='space-y-5 px-0 md:px-10 max-w-6xl'>
-        <h4 className='text-xl sm:text-2xl md:text-3xl font-semibold text-center'>
-          <span className='underline decoration-[#F7AB0A]/50'>
-            Case Study {i + 1} of {projects.length}:
-          </span>
-          {project?.title}
-        </h4>
-        <p className='text-sm md:text-base lg:text-lg xl:text-xl text-center md:text-left md:flex-row'>
-          {project?.summary}
-        </p>
+      <div className='relative w-full flex overflow-x-scroll overflow-y-hidden snap-x snap-mandatory z-20 scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-[#F7AB0A]/80'>
+        {projects.map((project, i) => (
+          <div key={i} className='w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-20 md:p-44 h-[150vh]'>
+            <motion.div 
+              initial={{ y: -300, opacity: 0 }}
+              transition={{ duration: 1.2 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className='relative w-full max-w-[300px] max-h-[200px] flex justify-center'
+            >
+              {project.linkToBuild ? (
+                <Link href={project.linkToBuild} target="_blank" rel="noopener noreferrer" aria-label={`View ${project.title}`}>
+                  <Image
+                    src={urlFor(project?.image).url()}
+                    alt={`Project Image ${i + 1}`}
+                    layout="responsive"
+                    width={300}
+                    height={200}
+                    objectFit="cover"
+                  />
+                </Link>
+              ) : (
+                <Image
+                  src={urlFor(project?.image).url()}
+                  alt={`Project Image ${i + 1}`}
+                  layout="responsive"
+                  width={300}
+                  height={200}
+                  objectFit="cover"
+                />
+              )}
+            </motion.div>
+
+            <div className='space-y-10 px-0 md:px-10 max-w-6xl'>
+            <h4 className='text-2xl md:text-4xl lg:text-5xl font-semibold text-center'>
+  <span className='underline decoration-[#F7AB0A]/50'>
+    Case Study {i + 1} of {projects.length}:
+  </span>
+  {project?.title}
+</h4>
+<p className='text-xs sm:text-base md:text-lg lg:text-xl text-center md:text-left'>
+  {project?.summary}
+</p>
+
+            </div>
+          </div>
+        ))}
       </div>
-    </div>
-  ))}
-</div>
-        <div className='w-full absolute top-[30%] bg-[#F7AB0A]/10 left-0 h-[500px] -skew-y-12'>
-        </div>
+
+      <div className='w-full absolute top-[30%] bg-[#F7AB0A]/10 left-0 h-[500px] -skew-y-12' />
     </motion.div>
   );
 }
