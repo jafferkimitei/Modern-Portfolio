@@ -1,8 +1,10 @@
 import { Experience } from "../typings";
 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
 export const fetchExperiences = async () => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/getExperiences`);
+    const res = await fetch(`${baseUrl}/api/getExperiences`);
     
     if (!res.ok) {
       throw new Error(`Failed to fetch experiences, status: ${res.status}`);
